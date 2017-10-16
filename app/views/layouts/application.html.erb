@@ -15,7 +15,15 @@
         <li><a href="#">Find a Competition</a></li>
         <li><a href="#">Share</a></li>
         <% if current_user && current_user.admin? %>
-        <li class="active"><%= link_to "Add a Team", new_sheet_team_path %></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Create a League</a></li>
+            <li><a href="#">Create a Team</a></li>
+            <li><a href="#">Create a Player</a></li>
+          </ul>
+        </li>
         <% end %>
       </ul>
     </div>

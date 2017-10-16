@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
+  <title>Over/Under Project</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <li class="active"> <%= link_to "Over/Under Project", root_path %> </li>
+        <li class="active"> <%= link_to "Create a Sheet", new_sheet_path %> </li>
+        <li><a href="#">Find a Competition</a></li>
+        <li><a href="#">Share</a></li>
+        <% if current_user && current_user.admin? %>
+        <li class="active"><%= link_to "Add a Team", new_sheet_team_path %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="container-fluid">
+      <div class="nav navbar-nav navbar-right" id="nav-status">
+    <% if user_signed_in? %>
+      Signed in as: <%= current_user.email %> - <%= current_user.role %> - <%= link_to 'User Profile', edit_user_registration_path, :class => 'navbar-link' %> - <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
+    <% else %>
+      <%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link' %> - <%= link_to "Sign In", new_user_session_path, :class => 'navbar-link'%>
+    <% end %>
+    </div>
+  </div>
+  </nav>
+  
+  <% if flash[:notice] %>
+  <div class= "alert alert-success">
+    <button type= "button" class="close" data-dismiss="alert">&times;</button>
+    <%= flash[:notice] %>
+  </div>
+  <% elsif flash[:alert] %>
+  <div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <%= flash[:alert] %>
+  </div>
+  <% end %>
 
 <%= yield %>
 

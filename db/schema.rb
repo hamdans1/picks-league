@@ -11,13 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171016183741) do
+ActiveRecord::Schema.define(version: 20171016200638) do
 
   create_table "leagues", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "teams", force: :cascade do |t|
+    t.integer  "league_id"
+    t.string   "city"
+    t.string   "name"
+    t.string   "coach"
+    t.boolean  "over"
+    t.decimal  "predictive"
+    t.integer  "actual"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "teams", ["league_id"], name: "index_teams_on_league_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

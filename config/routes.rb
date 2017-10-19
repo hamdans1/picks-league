@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :leagues, only: [:new, :create]
+  
+  resources :leagues do
+    resources :teams
+  end
 
   devise_for :users
   get 'welcome/index'

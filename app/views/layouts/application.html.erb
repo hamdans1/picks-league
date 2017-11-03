@@ -11,7 +11,7 @@
     <div class="container-fluid">
       <ul class="nav navbar-nav">
         <li class="active"> <%= link_to "Over/Under Project", root_path %> </li>
-        <li class="active"> <%= link_to "Create a Sheet", new_sheet_path %> </li>
+        <li><a href="#">Create a Sheet</a></li>
         <li><a href="#">Find a Competition</a></li>
         <li><a href="#">Share</a></li>
         <% if current_user && current_user.admin? %>
